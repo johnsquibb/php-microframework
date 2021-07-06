@@ -1,6 +1,6 @@
 # php-microframework
 
-A super-minimal PHP microframework that provides basic routing, controller
+A super-minimal PHP microframework that provides basic routing and controller support.
 
 ## Development Status
 
