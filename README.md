@@ -1,6 +1,10 @@
 # php-microframework
 
-A super-minimal PHP microframework that provides basic routing and controller support.
+A minimal PHP microframework that provides basic routing and controller support.
+
+## Features
+- Automatic routing based on URL path, e.g. `https://domain/controller/method/parameters...`
+- Twig templates with Bootstrap 5 base template
 
 ## Development Status
 
