@@ -1,9 +1,9 @@
 <?php
 
-namespace PhpMicroframework\Controller;
+namespace PhpMicroframework\Framework\Controller;
 
-use PhpMicroframework\Controller\Response\JsonResponse;
-use PhpMicroframework\Controller\Response\ResponseInterface;
+use PhpMicroframework\Framework\Controller\Response\JsonResponse;
+use PhpMicroframework\Framework\Controller\Response\ResponseInterface;
 
 abstract class AbstractController implements ControllerInterface
 {

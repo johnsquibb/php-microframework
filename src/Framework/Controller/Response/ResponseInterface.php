@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpMicroframework\Controller\Response;
+namespace PhpMicroframework\Framework\Controller\Response;
 
 interface ResponseInterface
 {

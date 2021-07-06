@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace PhpMicroframework\Controller;
+namespace PhpMicroframework\Framework\Controller;
 
-use PhpMicroframework\Controller\Response\HtmlResponse;
-use PhpMicroframework\Controller\Response\ResponseInterface;
+use PhpMicroframework\Framework\Controller\Response\HtmlResponse;
+use PhpMicroframework\Framework\Controller\Response\ResponseInterface;
 use stdClass;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -18,7 +18,7 @@ class ErrorController extends AbstractController
     {
         header('HTTP/1.1 500 Internal Server Error');
 
-        $templatePath = dirname(dirname(__DIR__)) . '/templates';
+        $templatePath = dirname(dirname(dirname(__DIR__))) . '/templates';
         $loader = new FilesystemLoader($templatePath);
         $twig = new Environment($loader);
         $html = $twig->render('core/error.html.twig', ['debug' => print_r($this->debugger, true)]);

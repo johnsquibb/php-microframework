@@ -2,7 +2,7 @@
 
 namespace PhpMicroframework\Framework;
 
-use PhpMicroframework\Controller\ErrorController;
+use PhpMicroframework\Framework\Controller\ErrorController;
 use stdClass;
 
 /**

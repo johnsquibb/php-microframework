@@ -17,7 +17,7 @@ const DEBUG = true;
 
 // Register all PSR-4 namespaces where the framework should search for controllers.
 Router::$namespaces = [
-    'PhpMicroframework\\Controller',
+    'PhpMicroframework\\Framework\\Controller',
 ];
 
 // Run the framework.

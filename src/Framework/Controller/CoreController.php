@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace PhpMicroframework\Controller;
+namespace PhpMicroframework\Framework\Controller;
 
-use PhpMicroframework\Controller\Response\HtmlResponse;
-use PhpMicroframework\Controller\Response\JsonResponse;
-use PhpMicroframework\Controller\Response\ResponseInterface;
+use PhpMicroframework\Framework\Controller\Response\HtmlResponse;
+use PhpMicroframework\Framework\Controller\Response\JsonResponse;
+use PhpMicroframework\Framework\Controller\Response\ResponseInterface;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -35,7 +35,7 @@ class CoreController extends AbstractController
 
     public function main(): ResponseInterface
     {
-        $templatePath = dirname(dirname(__DIR__)) . '/templates';
+        $templatePath = dirname(dirname(dirname(__DIR__))) . '/templates';
         $loader = new FilesystemLoader($templatePath);
         $twig = new Environment($loader);
         $html = $twig->render('demo/main.html.twig', []);

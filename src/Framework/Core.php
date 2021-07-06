@@ -2,8 +2,8 @@
 
 namespace PhpMicroframework\Framework;
 
-use PhpMicroframework\Controller\NotFoundController;
-use PhpMicroframework\Controller\Response\ResponseInterface;
+use PhpMicroframework\Framework\Controller\NotFoundController;
+use PhpMicroframework\Framework\Controller\Response\ResponseInterface;
 
 /**
  * Class Core handles framework setup, execution, and teardown.
