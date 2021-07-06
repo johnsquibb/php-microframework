@@ -17,6 +17,7 @@ date_default_timezone_set('UTC');
 const DEBUG = true;
 
 // Register all PSR-4 namespaces where the framework should search for controllers.
+// The framework will search in array order until the first controller match is found.
 Router::$namespaces = [
     'PhpMicroframework\\Application\\Controller',
     'PhpMicroframework\\Framework\\Controller',

@@ -80,6 +80,7 @@ final class Router
                         self::$controller = $controllerClass;
                         self::$method = array_shift($parts) ?? '';
                         self::$arguments = $parts;
+                        break;
                     }
                 }
             }
