@@ -2,7 +2,7 @@
 
 namespace PhpMicroframework\Framework;
 
-use PhpMicroframework\Controller\CoreController;
+use PhpMicroframework\Framework\Controller\CoreController;
 
 /**
  * The router determines which controller should be invoked by the current URI request.
@@ -10,16 +10,28 @@ use PhpMicroframework\Controller\CoreController;
 final class Router
 {
     /**
-     * Controller name.
+     * Controller name parsed from URL.
      * @var string
      */
     public static string $controller = '';
 
     /**
-     * Method name.
+     * Default controller name when not parsed from URL.
+     * @var string
+     */
+    public static string $defaultController = CoreController::class;
+
+    /**
+     * Method name parsed from URL.
      * @var string
      */
     public static string $method = '';
+
+    /**
+     * Default method name when not parsed from URL.
+     * @var string
+     */
+    public static string $defaultMethod = 'main';
 
     /**
      * Controller method arguments.
@@ -44,7 +56,7 @@ final class Router
 
     /**
      * Determines the appropriate controller, method, and arguments from the current URI request.
-     * Where necessary, defaults will be employed. Values are stored in local static members for use
+     * Where necessary, defaults will be used. Values are stored in local static members for use
      * by the core.
      */
     public static function current(): void
@@ -58,7 +70,7 @@ final class Router
         }
 
         if (empty($parts)) {
-            self::$controller = CoreController::class;
+            self::$controller = self::$defaultController;
         } else {
             $controller = ucfirst(strtolower(array_shift($parts)));
             if (!in_array($controller, self::$invalidRoutes)) {
@@ -74,7 +86,7 @@ final class Router
         }
 
         if (empty(self::$method)) {
-            self::$method = 'main';
+            self::$method = self::$defaultMethod;
         }
     }
 

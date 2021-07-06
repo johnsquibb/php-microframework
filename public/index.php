@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 
+use PhpMicroframework\Application\Controller\DemoController;
 use PhpMicroframework\Framework\Core;
 use PhpMicroframework\Framework\Router;
 
@@ -17,8 +18,13 @@ const DEBUG = true;
 
 // Register all PSR-4 namespaces where the framework should search for controllers.
 Router::$namespaces = [
+    'PhpMicroframework\\Application\\Controller',
     'PhpMicroframework\\Framework\\Controller',
 ];
+
+// Override the default controller to use demo::hello().
+Router::$defaultController = DemoController::class;
+Router::$defaultMethod = 'hello';
 
 // Run the framework.
 Core::run();
