@@ -1,17 +1,24 @@
 <?php declare(strict_types=1);
 
-
 use PhpMicroframework\Framework\Core;
 use PhpMicroframework\Framework\Router;
 
-error_reporting(E_ALL | E_STRICT);
-date_default_timezone_set('UTC');
-
 require dirname(__DIR__) . '/vendor/autoload.php';
+
+// Set errors for development.
+error_reporting(E_ALL | E_STRICT);
+
+// This can be set in php.ini and removed here.
+date_default_timezone_set('UTC');
 
 // Set to true to view error messages.
 // This should only be set in non-production environments.
 const DEBUG = true;
 
-Router::$namespaces[] = 'PhpMicroframework\\Controller';
+// Register all PSR-4 namespaces where the framework should search for controllers.
+Router::$namespaces = [
+    'PhpMicroframework\\Controller',
+];
+
+// Run the framework.
 Core::run();
