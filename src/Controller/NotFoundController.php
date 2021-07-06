@@ -4,24 +4,20 @@ namespace PhpMicroframework\Controller;
 
 use PhpMicroframework\Controller\Response\HtmlResponse;
 use PhpMicroframework\Controller\Response\ResponseInterface;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 class NotFoundController extends AbstractController
 {
     public function main(): ResponseInterface
     {
         header('HTTP/1.0 404 Not Found');
-        $context = <<<HTML
-        <html>
-        <head>
-            <title>Not Found</title>
-        </head>
-        <body>
-            <h1>Not Found</h1>
-            <p>The requested resource was not found on this server. Please check the URL and try again.</p>
-        </body>
-        </html>
-        HTML;
 
-        return new HtmlResponse($context);
+        $templatePath = dirname(dirname(__DIR__)) . '/templates';
+        $loader = new FilesystemLoader($templatePath);
+        $twig = new Environment($loader);
+        $html = $twig->render('core/not-found.html.twig');
+
+        return new HtmlResponse($html);
     }
 }

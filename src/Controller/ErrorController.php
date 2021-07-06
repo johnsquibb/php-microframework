@@ -5,6 +5,8 @@ namespace PhpMicroframework\Controller;
 use PhpMicroframework\Controller\Response\HtmlResponse;
 use PhpMicroframework\Controller\Response\ResponseInterface;
 use stdClass;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 class ErrorController extends AbstractController
 {
@@ -16,24 +18,11 @@ class ErrorController extends AbstractController
     {
         header('HTTP/1.1 500 Internal Server Error');
 
-        $debugOutput = '';
-        if (defined('DEBUG') && DEBUG === true) {
-            $debugOutput = print_r((array)$this->debugger, true);
-        }
+        $templatePath = dirname(dirname(__DIR__)) . '/templates';
+        $loader = new FilesystemLoader($templatePath);
+        $twig = new Environment($loader);
+        $html = $twig->render('core/error.html.twig', ['debug' => print_r($this->debugger, true)]);
 
-        $context = <<<HTML
-        <html>
-        <head>
-            <title>Server Error</title>
-        </head>
-        <body>
-            <h1>Server Error</h1>
-            <p>There was a problem while executing the request.</p>
-            <pre>$debugOutput</pre>
-        </body>
-        </html>
-        HTML;
-
-        return new HtmlResponse($context);
+        return new HtmlResponse($html);
     }
 }

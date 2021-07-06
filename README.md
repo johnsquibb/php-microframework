@@ -20,6 +20,6 @@ of [index.php](public/index.php) to add additional controller search paths.
 
 Use the builtin PHP server to serve from the public directory during development:
 
-`php -S localhost:8080`
+`php -S localhost:8080 -t .\public\`
 
 Then visit: http://localhost:8080 to view the demo.
