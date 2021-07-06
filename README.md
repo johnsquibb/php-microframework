@@ -9,12 +9,12 @@ tagged release will be made available when ready.
 
 ## Installation
 
-`composer require johnsquibb/php-microframework:dev-main`
+`composer create-project johnsquibb/php-microframework:dev-main`
 
 ## Setup
 
-Point web server at public directory and modify the contents of [index.php](public/index.php) to add
-additional controller search paths.
+Point the desired web server at the [public](public) directory and modify the contents
+of [index.php](public/index.php) to add additional controller search paths.
 
 ## Run
 
