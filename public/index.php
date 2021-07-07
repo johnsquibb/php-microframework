@@ -12,8 +12,7 @@ error_reporting(E_ALL | E_STRICT);
 // This can be set in php.ini and removed here.
 date_default_timezone_set('UTC');
 
-// Set to true to view error messages on 500 pages.
-// This should only be set in non-production environments.
+// Set DEBUG=true to view error messages on 500 pages.
 const DEBUG = true;
 
 // Register all PSR-4 namespaces where the framework should search for controllers.
