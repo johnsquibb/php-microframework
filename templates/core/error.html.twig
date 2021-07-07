@@ -5,6 +5,8 @@
 {% block body %}
     <h1>Server Error</h1>
     <p>There was a problem while executing the request.</p>
-    <pre><code>{{ debug }}</code></pre>
+    {% if constant("DEBUG") %}
+        <pre><code>{{ debug }}</code></pre>
+    {% endif %}
 {% endblock %}
 
