@@ -35,6 +35,6 @@ class DemoController extends AbstractController
 
     public function error(): void
     {
-        throw new \Exception("Example of an error.");
+        throw new \Exception("This is a sample error message");
     }
 }

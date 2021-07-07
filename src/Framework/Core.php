@@ -7,7 +7,6 @@ use PhpMicroframework\Framework\Controller\Response\ResponseInterface;
 
 /**
  * Class Core handles framework setup, execution, and teardown.
- *
  * @package PhpMicroframework\Framework
  */
 final class Core
@@ -15,7 +14,7 @@ final class Core
     /**
      * Initialize core.
      */
-    public static function initialize()
+    public static function initialize(): void
     {
         set_error_handler(array(Problem::class, 'handler'));
         set_exception_handler(array(Problem::class, 'handler'));

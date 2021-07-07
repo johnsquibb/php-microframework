@@ -7,6 +7,10 @@ use PhpMicroframework\Framework\Controller\Response\ResponseInterface;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
+/**
+ * Class NotFoundController handles the display of 404 Page Not Found errors.
+ * @package PhpMicroframework\Framework\Controller
+ */
 class NotFoundController extends AbstractController
 {
     public function main(): ResponseInterface

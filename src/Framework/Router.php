@@ -5,30 +5,31 @@ namespace PhpMicroframework\Framework;
 use PhpMicroframework\Framework\Controller\CoreController;
 
 /**
- * The router determines which controller should be invoked by the current URI request.
+ * Class Router determines which controller should be invoked by examining the current URI request.
+ * @package PhpMicroframework\Framework
  */
 final class Router
 {
     /**
-     * Controller name parsed from URL.
+     * Controller name parsed from request.
      * @var string
      */
     public static string $controller = '';
 
     /**
-     * Default controller name when not parsed from URL.
+     * Default controller name when not parsed from request.
      * @var string
      */
     public static string $defaultController = CoreController::class;
 
     /**
-     * Method name parsed from URL.
+     * Method name parsed from request.
      * @var string
      */
     public static string $method = '';
 
     /**
-     * Default method name when not parsed from URL.
+     * Default method name when not parsed from request.
      * @var string
      */
     public static string $defaultMethod = 'main';
@@ -40,13 +41,13 @@ final class Router
     public static array $arguments = [];
 
     /**
-     * Namespaces to search for controllers.
+     * The namespaces to search for matching controllers.
      * @var array
      */
     public static array $namespaces = [];
 
     /**
-     * List of routes that should not be extrapolated from URL parameters.
+     * List of routes to ignore in request.
      * @var array|string[]
      */
     public static array $invalidRoutes = [
@@ -55,9 +56,7 @@ final class Router
     ];
 
     /**
-     * Determines the appropriate controller, method, and arguments from the current URI request.
-     * Where necessary, defaults will be used. Values are stored in local static members for use
-     * by the core.
+     * Determine the appropriate controller, method, and arguments from the current request.
      */
     public static function current(): void
     {
@@ -92,7 +91,7 @@ final class Router
     }
 
     /**
-     * Redirect to another location.
+     * Redirect the visitor to another location.
      * @param string $location
      */
     public static function redirect(string $location = '/'): void

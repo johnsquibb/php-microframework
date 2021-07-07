@@ -6,12 +6,16 @@ use PhpMicroframework\Framework\Controller\ErrorController;
 use stdClass;
 
 /**
- * Custom Error and Exception handler.
+ * Class Problem handles errors that occur during framework execution.
+ * @package PhpMicroframework\Framework
  */
 final class Problem
 {
+    private static bool $displayErrorsEnabled = false;
+
+
     /**
-     * Handles framework errors when error reporting is enabled.
+     * Capture and format error for display.
      */
     public static function handler(): void
     {
@@ -55,21 +59,21 @@ final class Problem
             // Flush any open output buffers. We only want to see errors.
             ob_get_clean();
         } catch (\Exception $e) {
-            $debugger->message = "Error in Framework Exception Handler: " . $e->getMessage();
+            $debugger->message = "Error in framework error handler: " . $e->getMessage();
         } finally {
-            // Show error.
+            $debugger->displayErrors = self::$displayErrorsEnabled;
             $controller = new ErrorController($debugger);
             Core::render($controller->main());
         }
     }
 
     /**
-     * Returns string representation for supplied PHP error constant.
+     * Return the string representation for supplied PHP error constant.
      *
      * @param $errorNumber
      * @return string $type
      */
-    private static function getErrorType($errorNumber)
+    private static function getErrorType($errorNumber): string
     {
         // Display custom error type. We group similar types.
         return match ($errorNumber) {
@@ -82,5 +86,14 @@ final class Problem
             E_DEPRECATED, E_USER_DEPRECATED => 'Deprecated',
             default => 'Unknown Error',
         };
+    }
+
+    /**
+     * Set whether to display error messages in output.
+     * @param bool $displayErrorsEnabled
+     */
+    public static function setDisplayErrorsEnabled(bool $displayErrorsEnabled): void
+    {
+        self::$displayErrorsEnabled = $displayErrorsEnabled;
     }
 }
