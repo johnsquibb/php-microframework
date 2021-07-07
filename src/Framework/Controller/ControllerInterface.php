@@ -2,9 +2,6 @@
 
 namespace PhpMicroframework\Framework\Controller;
 
-use PhpMicroframework\Framework\Controller\Response\ResponseInterface;
-
 interface ControllerInterface
 {
-    public function main(): ResponseInterface;
 }

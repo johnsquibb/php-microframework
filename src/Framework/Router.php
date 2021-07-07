@@ -2,8 +2,6 @@
 
 namespace PhpMicroframework\Framework;
 
-use PhpMicroframework\Framework\Controller\CoreController;
-
 /**
  * Class Router determines which controller should be invoked by examining the current URI request.
  * @package PhpMicroframework\Framework
@@ -20,7 +18,7 @@ final class Router
      * Default controller name when not parsed from request.
      * @var string
      */
-    public static string $defaultController = CoreController::class;
+    public static string $defaultController = '';
 
     /**
      * Method name parsed from request.

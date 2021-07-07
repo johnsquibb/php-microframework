@@ -5,14 +5,12 @@ namespace PhpMicroframework\Framework\Controller;
 use PhpMicroframework\Framework\Controller\Response\HtmlResponse;
 use PhpMicroframework\Framework\Controller\Response\ResponseInterface;
 use stdClass;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
 /**
  * Class ErrorController handles the display of 500 Internal Server Error pages.
  * @package PhpMicroframework\Framework\Controller
  */
-class ErrorController extends AbstractController
+class ErrorController extends TemplateController
 {
     public function __construct(private stdClass $debugger)
     {
@@ -22,10 +20,7 @@ class ErrorController extends AbstractController
     {
         header('HTTP/1.1 500 Internal Server Error');
 
-        $templatePath = dirname(dirname(dirname(__DIR__))) . '/templates';
-        $loader = new FilesystemLoader($templatePath);
-        $twig = new Environment($loader);
-        $html = $twig->render(
+        $html = $this->render(
             'core/error.html.twig',
             [
                 'displayErrors' => $this->debugger->displayErrors,

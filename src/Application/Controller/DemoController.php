@@ -2,21 +2,16 @@
 
 namespace PhpMicroframework\Application\Controller;
 
-use PhpMicroframework\Framework\Controller\AbstractController;
 use PhpMicroframework\Framework\Controller\Response\HtmlResponse;
 use PhpMicroframework\Framework\Controller\Response\JsonResponse;
 use PhpMicroframework\Framework\Controller\Response\ResponseInterface;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
+use PhpMicroframework\Framework\Controller\TemplateController;
 
-class DemoController extends AbstractController
+class DemoController extends TemplateController
 {
     public function hello(): ResponseInterface
     {
-        $templatePath = dirname(dirname(dirname(__DIR__))) . '/templates';
-        $loader = new FilesystemLoader($templatePath);
-        $twig = new Environment($loader);
-        $html = $twig->render('demo/main.html.twig', []);
+        $html = $this->render('demo/main.html.twig', []);
 
         return new HtmlResponse($html);
     }
