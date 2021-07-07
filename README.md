@@ -1,6 +1,6 @@
 # php-microframework
 
-A minimal PHP microframework that provides basic routing and controller support.
+A minimal PHP 8 microframework that provides basic routing and controller support.
 
 ## Features
 - Automatic routing based on URL path, e.g. `https://domain/controller/method/parameters...`
