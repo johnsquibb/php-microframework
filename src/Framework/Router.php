@@ -6,7 +6,7 @@ namespace PhpMicroframework\Framework;
  * Class Router determines which controller should be invoked by examining the current URI request.
  * @package PhpMicroframework\Framework
  */
-final class Router
+class Router
 {
     /**
      * Controller name parsed from request.
@@ -45,20 +45,11 @@ final class Router
     public static array $namespaces = [];
 
     /**
-     * List of routes to ignore in request.
-     * @var array|string[]
-     */
-    public static array $invalidRoutes = [
-        'NotFound',
-        'Error'
-    ];
-
-    /**
      * Determine the appropriate controller, method, and arguments from the current request.
      */
     public static function current(): void
     {
-        $current = self::getRequestPath();
+        $current = static::getRequestPath();
 
         $parts = array();
 
@@ -67,24 +58,23 @@ final class Router
         }
 
         if (empty($parts)) {
-            self::$controller = self::$defaultController;
+            static::$controller = static::$defaultController;
         } else {
             $controller = ucfirst(strtolower(array_shift($parts)));
-            if (!in_array($controller, self::$invalidRoutes)) {
-                foreach (self::$namespaces as $namespace) {
-                    $controllerClass = $namespace . '\\' . $controller . 'Controller';
-                    if (class_exists($controllerClass)) {
-                        self::$controller = $controllerClass;
-                        self::$method = array_shift($parts) ?? '';
-                        self::$arguments = $parts;
-                        break;
-                    }
+
+            foreach (static::$namespaces as $namespace) {
+                $controllerClass = $namespace . '\\' . $controller . 'Controller';
+                if (class_exists($controllerClass)) {
+                    static::$controller = $controllerClass;
+                    static::$method = array_shift($parts) ?? '';
+                    static::$arguments = $parts;
+                    break;
                 }
             }
         }
 
-        if (empty(self::$method)) {
-            self::$method = self::$defaultMethod;
+        if (empty(static::$method)) {
+            static::$method = static::$defaultMethod;
         }
     }
 
@@ -106,7 +96,7 @@ final class Router
      * Parse the current request path.
      * @return string
      */
-    private static function getRequestPath(): string
+    protected static function getRequestPath(): string
     {
         $current = $_SERVER['PHP_SELF'];
 

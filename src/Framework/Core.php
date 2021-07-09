@@ -9,7 +9,7 @@ use PhpMicroframework\Framework\Controller\Response\ResponseInterface;
  * Class Core handles framework setup, execution, and teardown.
  * @package PhpMicroframework\Framework
  */
-final class Core
+class Core
 {
     /**
      * Initialize core.
@@ -18,7 +18,7 @@ final class Core
     {
         set_error_handler(array(Problem::class, 'handler'));
         set_exception_handler(array(Problem::class, 'handler'));
-        register_shutdown_function(array(self::class, 'shutdown'));
+        register_shutdown_function(array(static::class, 'shutdown'));
 
         Router::current();
     }
@@ -28,18 +28,18 @@ final class Core
      */
     public static function run(): void
     {
-        self::initialize();
+        static::initialize();
 
         if (class_exists(Router::$controller)) {
             $method = array(new Router::$controller, Router::$method);
             if (is_callable($method)) {
                 $response = call_user_func_array($method, Router::$arguments);
-                self::render($response);
+                static::render($response);
                 return;
             }
         }
 
-        self::error404();
+        static::error404();
     }
 
     /**
@@ -48,7 +48,7 @@ final class Core
     public static function error404(): void
     {
         $controller = new NotFoundController();
-        self::render($controller->main());
+        static::render($controller->main());
     }
 
     /**

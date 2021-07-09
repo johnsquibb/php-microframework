@@ -20,7 +20,6 @@ Problem::setDisplayErrorsEnabled(true);
 // The framework will search in array order until the first controller match is found.
 Router::$namespaces = [
     'PhpMicroframework\\Application\\Controller',
-    'PhpMicroframework\\Framework\\Controller',
 ];
 
 // Set the demo controller and method as home page.
