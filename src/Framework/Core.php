@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace PhpMicroframework\Framework;
 
@@ -31,7 +33,7 @@ class Core
         static::initialize();
 
         if (class_exists(Router::$controller)) {
-            $method = array(new Router::$controller, Router::$method);
+            $method = array(new Router::$controller(), Router::$method);
             if (is_callable($method)) {
                 $response = call_user_func_array($method, Router::$arguments);
                 static::render($response);

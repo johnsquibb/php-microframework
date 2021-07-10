@@ -34,10 +34,13 @@ final class Problem
                 // Errors will supply 2-5 parameters
                 case 5:
                     $debugger->context = $args[4];
+                    // no break
                 case 4:
                     $debugger->line_number = $args[3];
+                    // no break
                 case 3:
                     $debugger->file_name = $args[2];
+                    // no break
                 case 2:
                     $debugger->message = $args[1];
                     $debugger->error_type = self::getErrorType($args[0]);
