@@ -10,7 +10,7 @@ use PhpMicroframework\Framework\Router;
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 // Set error reporting level for development.
-error_reporting(E_ALL | E_STRICT);
+error_reporting(E_ALL);
 
 // This can be set in php.ini and removed here.
 date_default_timezone_set('UTC');
